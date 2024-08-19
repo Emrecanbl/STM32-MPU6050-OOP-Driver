@@ -42,71 +42,43 @@ This repository contains an object-oriented C++ driver for the MPU6050 sensor, d
 1. **Instantiate the MPU6050 Object:**
 
     ```cpp
-    MPU6050 mpu;
+  MPU6050 Sensor;
     ```
 
 2. **Initialize the Sensor:**
 
     ```cpp
-    if (mpu.initialize() == 0) {
-        // Handle initialization failure
-    }
+  while (Sensor.MPU_Init()!=1){
+	 HAL_Delay(100);
+  }
     ```
 
 3. **Read Sensor Data:**
 
     - **Accelerometer:**
         ```cpp
-        mpu.readAccelerometer();
-        float accelX = mpu.getAccelerometerX();
-        float accelY = mpu.getAccelerometerY();
-        float accelZ = mpu.getAccelerometerZ();
+        mpu.Accelerometer_Read();
+	  Accelerometer_X = Sensor.Read_Accelerometer_X();
+	  Accelerometer_Y = Sensor.Read_Accelerometer_Y();
+	  Accelerometer_Z = Sensor.Read_Accelerometer_Z();
         ```
 
     - **Gyroscope:**
         ```cpp
-        mpu.readGyroscope();
-        float gyroX = mpu.getGyroX();
-        float gyroY = mpu.getGyroY();
-        float gyroZ = mpu.getGyroZ();
+        mpu.Gyroscope_Read();
+	  Gyro_X = Sensor.Read_Gyro_X();
+	  Gyro_Y = Sensor.Read_Gyro_Y();
+	  Gyro_Z = Sensor.Read_Gyro_Z();
         ```
 
     - **Temperature:**
         ```cpp
-        int16_t temperature = mpu.readTemperature();
+        Temp = Sensor.Temp_Read();
         ```
 
     - **Angles:**
         ```cpp
-        mpu.calculateAngles();
-        float angleX = mpu.getAngleX();
-        float angleY = mpu.getAngleY();
-        float angleZ = mpu.getAngleZ();
+	  Angle_X = Sensor.Read_Angle_X();
+	  Angle_Y = Sensor.Read_Angle_Y();
+	  Angle_Z = Sensor.Read_Angle_Z();
         ```
-
-### Example
-
-Here's a simple example to initialize the MPU6050, read accelerometer data, and calculate angles:
-
-```cpp
-#include "MPU6050.h"
-
-int main(void) {
-    MPU6050 mpu;
-
-    if (mpu.initialize() == 0) {
-        // Handle error
-        return -1;
-    }
-
-    while (1) {
-        mpu.readAccelerometer();
-        mpu.calculateAngles();
-
-        float angleX = mpu.getAngleX();
-        float angleY = mpu.getAngleY();
-        float angleZ = mpu.getAngleZ();
-
-        // Use the calculated angles
-    }
-}
