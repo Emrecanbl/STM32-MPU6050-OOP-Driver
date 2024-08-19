@@ -41,14 +41,14 @@ This repository contains an object-oriented C++ driver for the MPU6050 sensor, d
 
 1. **Instantiate the MPU6050 Object:**
     ```cpp
-  MPU6050 Sensor;
+  	MPU6050 Sensor;
     ```
 
 2. **Initialize the Sensor:**
     ```cpp
-  while (Sensor.MPU_Init()!=1){
+  	while (Sensor.MPU_Init()!=1){
 	 HAL_Delay(100);
-  }
+  	}
     ```
 
 3. **Read Sensor Data:**
